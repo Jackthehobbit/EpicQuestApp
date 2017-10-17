@@ -15,19 +15,37 @@ namespace EpicQuestServices
         //Builds a basic message
         public MessageObject BuildMessage(string Type,string Id,string Title,string Message)
         {
-            return BuildMessage(Type, Id, Title, Message);
+            return new MessageObject()
+            {
+                Type = Type,
+                Id = Id,
+                Title = Title,
+                Message = Message
+            };
         }
 
         // Builds a basic message including extra information from fluent validation
         public MessageObject BuildMessage(string Type, string Id, string Title, string Message, ValidationResult fluentvalidationResult)
         {
-            return BuildMessage(Type, Id, Title, Message,null,fluentvalidationResult);
+            return new MessageObject()
+            {
+                Type = Type,
+                Id = Id,
+                Title = Title,
+                Message = Message
+            };
         }
 
         // Builds a basic message including extra information from an exception
         public MessageObject BuildMessage(string Type, string Id, string Title, string Message, Exception exception)
         {
-            return BuildMessage(Type, Id, Title, Message, exception, null);
+            return new MessageObject()
+            {
+                Type = Type,
+                Id = Id,
+                Title = Title,
+                Message = Message
+            };
         }
 
         // Builds a basic message including extra information from fluent validation & an exception

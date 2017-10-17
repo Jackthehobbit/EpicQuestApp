@@ -21,7 +21,6 @@ namespace EpicQuestEntities
     {
         public QuestValidator()
         {
-            RuleFor(quest => quest.Id).NotEmpty().WithMessage("Id is required");
             RuleFor(quest => quest.Title).NotEmpty().WithMessage("Title is required");
         }
     }

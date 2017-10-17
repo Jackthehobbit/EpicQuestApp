@@ -20,6 +20,13 @@ namespace EpicQuestData
         /// <param name="quest">Quest to Add</param>
         public void AddQuest(Quest quest)
         {
+
+            //Default the quest to active if not set
+            if (quest.Active != false)
+            {
+                quest.Active = true;
+            }
+
             _context.Quests.Add(quest);
         }
 
@@ -45,7 +52,7 @@ namespace EpicQuestData
             }
             else // Only return active quests
             {
-                return _context.Quests.Where(quest => quest.Active == true).ToList();
+                return _context.Quests.Where(quest => quest.Active).ToList();
             }
             
         }
