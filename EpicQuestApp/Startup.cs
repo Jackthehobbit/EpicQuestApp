@@ -1,4 +1,5 @@
 using EpicQuestData;
+using EpicQuestServices;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +37,9 @@ namespace EpicQuestApp
 
             //Register the repositories for use in the controllers
             services.AddScoped<IQuestRepository, QuestRepository>();
+
+            //Error Handling service used to standardise error messages 
+            services.AddSingleton<MessageService>();
 
             services.AddMvc(config =>
             {
