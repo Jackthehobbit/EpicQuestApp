@@ -1,4 +1,7 @@
+using AutoMapper;
+using EpicQuestApp.Views.ViewModels;
 using EpicQuestData;
+using EpicQuestEntities;
 using EpicQuestServices;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -82,6 +85,12 @@ namespace EpicQuestApp
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
+            });
+
+            //Maps the view models to the models to easily convert data between database models and view models
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<QuestViewModel, Quest>().ReverseMap();
             });
         }
     }
