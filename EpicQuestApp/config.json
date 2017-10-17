@@ -1,0 +1,5 @@
+{
+  "Data": {
+    "ContextConnection": "Server=(localDB)\\MSSQLLocalDb;Database=EpicQuestDb;Trusted_Connection=true;MultipleActiveResultSets=true"
+  }
+}
