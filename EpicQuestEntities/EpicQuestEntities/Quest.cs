@@ -13,6 +13,8 @@ namespace EpicQuestEntities
 
         public List<Quest> ChainQuests { get; set; }
 
+        public bool Active { get; set; }
+
     }
 
     public class QuestValidator : AbstractValidator<Quest>
