@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicQuestEntities", "EpicQu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicQuestData", "EpicQuestData\EpicQuestData\EpicQuestData.csproj", "{ECD06CE9-96E1-4D9D-98F0-8BB87297BB83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpicQuestServices", "EpicQuestServices\EpicQuestServices\EpicQuestServices.csproj", "{81F59A15-2C35-4C9C-818E-C62A19758B86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ECD06CE9-96E1-4D9D-98F0-8BB87297BB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECD06CE9-96E1-4D9D-98F0-8BB87297BB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECD06CE9-96E1-4D9D-98F0-8BB87297BB83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F59A15-2C35-4C9C-818E-C62A19758B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F59A15-2C35-4C9C-818E-C62A19758B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F59A15-2C35-4C9C-818E-C62A19758B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F59A15-2C35-4C9C-818E-C62A19758B86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
