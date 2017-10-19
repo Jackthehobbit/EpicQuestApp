@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EpicQuestApp.Views.ViewModels;
+using EpicQuestApp.ViewModels;
 using EpicQuestData;
 using EpicQuestEntities;
 using EpicQuestServices;

@@ -7,14 +7,16 @@ import { AppRoutingModule } from './app.module.routing';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
-import { HeaderComponent } from './components/shared/header/header.component'
+import { QuestListComponent } from './components/quests/quest-list/quest-list.component';
+import { HeaderComponent } from './components/shared/header/header.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        HeaderComponent
+        HeaderComponent,
+        QuestListComponent
     ],
     imports: [
         CommonModule,

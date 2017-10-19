@@ -1,7 +1,7 @@
 ﻿using EpicQuestEntities;
 using System.Collections.Generic;
 
-namespace EpicQuestApp.Views.ViewModels
+namespace EpicQuestApp.ViewModels
 {
     public class QuestViewModel
     {
