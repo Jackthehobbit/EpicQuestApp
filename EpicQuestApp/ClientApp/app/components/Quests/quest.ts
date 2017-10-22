@@ -1,6 +1,6 @@
 ﻿export class Quest {
     id: number;
-    name: string;
+    title: string;
     description?: string;
     chainQuests?: Quest[];
     active?: boolean;

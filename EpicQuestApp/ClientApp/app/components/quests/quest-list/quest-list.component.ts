@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit,ViewChild } from '@angular/core';
 import { Quest } from '../quest';
 import { ModalDialogComponent } from '../../core/modal-dialog/modal-dialog.component'
+import { CoreService } from "../../core/core.service";
+import { QuestService } from "../quest.service";
 
 @Component({
     selector: 'quest-list',
@@ -12,17 +14,25 @@ export class QuestListComponent implements OnInit {
     @ViewChild('deleteDialog') deleteDialog: ModalDialogComponent;
     private toDeleteId?: number;
 
+    constructor(private coreService: CoreService,private questService:QuestService) {
+
+    }
+
     ngOnInit(): void {
-        this.quests = [
-            {
-                id: 1,
-                name:"Test Quest 1"
-            },
-            {
-                id: 2,
-                name:"Test Quest 2"
-            }
-        ];
+        this.coreService.doExec();
+        this.getQuests();
+    }
+
+    //Function to return the quests
+    getQuests(): void {
+        //Send the request to the server to get the requests
+        this.questService.getQuests()
+            .then( // Successfully got the quests so update the table
+                quests => this.quests = quests
+            )
+            .catch( //Something went wrong - output a message to inform the user
+                error => { this.coreService.setMessage(error); }
+            );
     }
 
     //This is called from both the cancel and confirm buttons of the delete dialog - doDelete is true if the user confirmed the delete should happen
@@ -37,7 +47,7 @@ export class QuestListComponent implements OnInit {
         }
     }
 
-    //Delete a unit.
+    //Delete a quest.
     deleteQuest(confirm: boolean, id: number) {
 
         // Should we display a confirm dialog?

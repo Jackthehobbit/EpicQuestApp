@@ -11,6 +11,8 @@ import { HomeComponent } from './components/home/home.component';
 import { QuestListComponent } from './components/quests/quest-list/quest-list.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 
+import { QuestService } from './components/quests/quest.service'
+
 
 @NgModule({
     declarations: [
@@ -25,6 +27,9 @@ import { HeaderComponent } from './components/shared/header/header.component';
         FormsModule,
         AppRoutingModule,
         CoreModule
+    ],
+    providers: [
+        QuestService
     ]
 })
 export class AppModuleShared {
