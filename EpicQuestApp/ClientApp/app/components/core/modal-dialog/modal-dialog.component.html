@@ -1,0 +1,17 @@
+﻿<div class="modal Fade" [ngStyle]="getStyle()" [ngClass]="{'in':visible}" role="dialog" #dialog>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body">
+                <ng-content></ng-content>
+            </div>
+            <div class="modal-footer">
+                <button type="button" *ngFor="let button of options.buttons" (click)="button.clickButton()" [ngClass]="button.class">{{button.text}}</button>
+                <button type="button" *ngIf="showCancelButton" (click)="cancel()" [ngClass]="options.cancelButtonClass">{{options.cancelButtonContent}}</button>
+                <button type="button" *ngIf="showConfirmButton" (click)="confirm()" [ngClass]="options.confirmButtonClass">{{options.confirmButtonContent}}</button>
+            </div>
+        </div>
+    </div>
+</div>
