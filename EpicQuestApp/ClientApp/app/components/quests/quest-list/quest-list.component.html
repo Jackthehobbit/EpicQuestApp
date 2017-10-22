@@ -23,7 +23,7 @@
                         <td>{{quest.id}}</td>
                         <td>{{quest.name}}</td>
                         <td><button class="btn-primary btn">Edit</button></td>
-                        <td><button class="btn-danger btn">Delete</button></td>
+                        <td><button class="btn-danger btn" (click)="deleteQuest(true,quest.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -35,3 +35,7 @@
         </div>
     </div>
 </section>
+
+<modal-dialog #deleteDialog [title]="'Confirm Delete?'" (cancelClick)="confirmDelete(false)" (confirmClick)="confirmDelete(true)">
+    Are you sure you wish to delete this quest?
+</modal-dialog>
