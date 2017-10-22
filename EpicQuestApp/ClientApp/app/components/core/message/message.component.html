@@ -1,0 +1,12 @@
+﻿<div class="content-header" *ngIf="this.message">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="callout {{this.class}}">
+                <h4>{{this.message.title}}</h4>
+                <p>{{this.message.message}}</p>
+                <!--The following is debug messaging only enabled if the global debug mode is set.-->
+                <p *ngIf="this.coreService.getDebugMode()">{{this.message.debugMessage}} Status: {{this.message.status}}</p>
+            </div>
+        </div>
+    </div>
+</div>
