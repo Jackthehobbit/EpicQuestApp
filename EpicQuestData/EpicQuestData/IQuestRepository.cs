@@ -10,6 +10,6 @@ namespace EpicQuestData
         void DeleteQuest(Quest quest);
         IList<Quest> GetAllQuests(bool includeInactive);
         Quest GetQuestById(int id);
-        Task<bool> SaveChangesAsnc();
+        Task<bool> SaveChangesAsync();
     }
 }

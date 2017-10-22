@@ -70,7 +70,7 @@ namespace EpicQuestData
         /// <summary>
         /// Commits any pending changes to the database
         /// </summary>
-        public async Task<bool> SaveChangesAsnc()
+        public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
         }

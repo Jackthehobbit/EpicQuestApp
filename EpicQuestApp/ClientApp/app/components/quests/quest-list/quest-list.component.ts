@@ -3,6 +3,7 @@ import { Quest } from '../quest';
 import { ModalDialogComponent } from '../../core/modal-dialog/modal-dialog.component'
 import { CoreService } from "../../core/core.service";
 import { QuestService } from "../quest.service";
+import { Message } from "../../core/message/message";
 
 @Component({
     selector: 'quest-list',
@@ -57,7 +58,26 @@ export class QuestListComponent implements OnInit {
             return; //Nothing else to do - this function will be called again if the user confirms to do the actual delete
         }
 
-        alert(id + " Would be deleted");
+        this.questService.deleteQuest(id)
+            .then(
+            response => {
+                let index = this.quests.findIndex(x => x.id === id);
+                if (index >= 0) {// find index returns -1 if it can't find the item so we only want to remove an item if we found it
+                    this.quests.splice(index, 1);
+                }
+
+                let message = new Message();
+                message.title = "Record Removed";
+                message.type = "Success";
+                message.message = "Record removed successfully"
+
+                this.coreService.setMessage(message);
+            }
+            )
+            .catch(error => {
+                this.coreService.setMessage(error);
+
+            });
         
     }
 }

@@ -21,6 +21,22 @@ export class QuestService {
             );
     }
 
+    //Delete a quest
+    deleteQuest(id: number): Promise<any> {
+        if (typeof id === 'undefined') {
+            //TODO
+            alert("NO ID");
+        }
+
+        return this.coreService.sendAjaxRequest("Delete", "api/quests/" + id, {})
+            .then(
+                response => response.json()
+            )
+            .catch(
+                this.handleError
+            );
+    }
+
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error);

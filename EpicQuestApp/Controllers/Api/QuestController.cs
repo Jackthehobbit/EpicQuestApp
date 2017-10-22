@@ -100,7 +100,7 @@ namespace EpicQuestApp.Controllers.Api
             try
             {
                 _repository.AddQuest(newQuest);
-                await _repository.SaveChangesAsnc();
+                await _repository.SaveChangesAsync();
                 ModelState.Clear();
 
                 //Quest was added successfully
@@ -124,6 +124,39 @@ namespace EpicQuestApp.Controllers.Api
         {
             MessageObject message = _messageService.BuildMessage("Info", "NotImplemented", "Title", "Not Implemented Yet!");
             return NotFound(message);
+        }
+
+        /// <summary>
+        /// Deletes a quest from the database
+        /// </summary>
+        /// <param name="id">The Id of the quest to delete</param>
+        /// <returns>Nothing</returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                //First check the unit were are try to delete exists
+                Quest deleteQuest = _repository.GetQuestById(id);
+                if (deleteQuest == null)
+                {
+                    MessageObject message = _messageService.BuildMessage("Error", "missingRecord", "Record Deosn't Exist", "Cannot find a unit with id " + id + ". Delete Failed");
+                    return NotFound(message);
+                }
+
+                //Delete the item from the db
+                _repository.DeleteQuest(deleteQuest);
+                await _repository.SaveChangesAsync();
+
+                //If we've made it here then the delete has successfully completed
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                //Something went wrong during the delete
+                MessageObject message = _messageService.BuildMessage("Error", "deleteFailed", "Delete Failed", "An Error occured whilst trying to delete the unit. Please try again", ex);
+                return BadRequest(message);
+            }
         }
     }
 }
