@@ -1,6 +1,37 @@
-﻿<div class="row">
-    <div *ngFor="let quest of quests" class="panel panel-danger">
-        {{quest.name}}
-    </div>
-    Quest List goes here!
+﻿<div class="content-header">
+    <h1>
+        Quests <small>This page displays a list of all the quests in the system</small>
+    </h1>
 </div>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h2 class="box-title">Quests</h2>
+        </div>
+        <div class="box-body no-padding">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let quest of quests">
+                        <td>{{quest.id}}</td>
+                        <td>{{quest.name}}</td>
+                        <td><button class="btn-primary btn">Edit</button></td>
+                        <td><button class="btn-danger btn">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer box-solid">
+            <div class="pull-right">
+                <button class="btn-success btn">Add</button>
+            </div>
+        </div>
+    </div>
+</section>
