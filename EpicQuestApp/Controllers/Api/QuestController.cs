@@ -18,6 +18,11 @@ namespace EpicQuestApp.Controllers.Api
         private IQuestRepository _repository;
         private MessageService _messageService;
 
+        /// <summary>
+        /// API for Operations relating to Quests and child records
+        /// </summary>
+        /// <param name="repository">Quest repository for database access - must be of type IQuestRepository</param>
+        /// <param name="messageService">Message service to handle all messages globally</param>
         public QuestController(IQuestRepository repository,MessageService messageService)
         {
             _repository = repository;
@@ -59,7 +64,7 @@ namespace EpicQuestApp.Controllers.Api
         /// <param name="Quest">The Quest to add</param>
         /// <returns>If successful returns a link to get the newly added quest</returns>
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody]QuestViewModel quest)
+        public async Task<IActionResult> Create([FromBody]QuestViewModel quest)
         {
             ValidationResult validationResults = null;
             Quest newQuest;
@@ -99,7 +104,11 @@ namespace EpicQuestApp.Controllers.Api
             //The validation was fine so add the quest to the database
             try
             {
-                _repository.AddQuest(newQuest);
+                if (!newQuest.Active)
+                {
+                    newQuest.Active = true; // default to active when created - the user can mark them as not active later if they like
+                }
+                _repository.CreateQuest(newQuest);
                 await _repository.SaveChangesAsync();
                 ModelState.Clear();
 

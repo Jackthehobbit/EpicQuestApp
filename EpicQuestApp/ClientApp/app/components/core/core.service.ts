@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Subject } from "rxjs/Subject";
 import { BehaviorSubject } from "rxjs/Rx";
 import { Message } from './message/message';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 //This Service contains core functions used throughout the application
 @Injectable()
@@ -71,7 +71,7 @@ export class CoreService {
     }
 
     //Wrapper function to send a HTTP request
-    public sendAjaxRequest(method: string, url: string, data: object): Promise<any> {
+    public sendAjaxRequest(method: string, url: string, data: any): Promise<any> {
 
         //Check we have an url defined - without an url 
         if (typeof url === 'undefined' || url === "" || url === null) {
@@ -84,6 +84,12 @@ export class CoreService {
                 return this.httpService.get(url, data).toPromise();
             case "Delete":
                 return this.httpService.delete(url, data).toPromise();
+            case "Post":
+                let headers = new Headers({ 'Content-Type': 'application/json' });
+                let options = new RequestOptions({ headers: headers });
+                let body = JSON.stringify(data);
+                return this.httpService.post(url, body, options).toPromise();
+
             //TODO - More verbs
             default:
                 return Promise.reject("Cannot Make Ajax call - invalid method passed in");

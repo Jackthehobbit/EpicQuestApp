@@ -11,8 +11,10 @@ import { Message } from "../../core/message/message";
 })
 
 export class QuestListComponent implements OnInit {
+    addQuest: Quest;
     quests: Array<Quest>
     @ViewChild('deleteDialog') deleteDialog: ModalDialogComponent;
+    @ViewChild('addDialog') addDialog: ModalDialogComponent;
     private toDeleteId?: number;
 
     constructor(private coreService: CoreService,private questService:QuestService) {
@@ -21,6 +23,9 @@ export class QuestListComponent implements OnInit {
 
     ngOnInit(): void {
         this.coreService.doExec();
+
+        this.addQuest = new Quest();
+
         this.getQuests();
     }
 
@@ -79,5 +84,35 @@ export class QuestListComponent implements OnInit {
 
             });
         
+    }
+
+    //Function called when add is clicked to show the add quest dialog
+    addQuestClick() {
+        //Create a new quest for the user to add data to
+        this.addQuest = new Quest();
+        //Display the add dialog to allow the user to enter the information
+        this.addDialog.open();
+    }
+
+    //Function to add a new quest
+    addNewQuest() {
+        this.questService.addQuest(this.addQuest).
+            then(
+            response => {
+                    this.quests.push(response);
+                    this.addDialog.close();
+
+                    let message = new Message();
+                    message.title = "Record Added";
+                    message.type = "Success";
+                    message.message = "Record added successfully"
+
+                    this.coreService.setMessage(message);
+                }
+            )
+            .catch(
+            error => {
+                alert ("error")
+            );
     }
 }

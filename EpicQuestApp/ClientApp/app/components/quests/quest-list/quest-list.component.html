@@ -30,7 +30,7 @@
         </div>
         <div class="box-footer box-solid">
             <div class="pull-right">
-                <button class="btn-success btn">Add</button>
+                <button class="btn-success btn" (click)="addQuestClick()">Add</button>
             </div>
         </div>
     </div>
@@ -38,4 +38,17 @@
 
 <modal-dialog #deleteDialog [title]="'Confirm Delete?'" (cancelClick)="confirmDelete(false)" (confirmClick)="confirmDelete(true)">
     Are you sure you wish to delete this quest?
+</modal-dialog>
+
+<modal-dialog #addDialog [title]="'Add Quest?'" (cancelClick)="this.addDialog.close()" (confirmClick)="addNewQuest()">
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <label for="QuestTitle" class="control-label col-sm-3">Title</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="QuestTitle" name="title" placeholder="Enter Quest Title" [(ngModel)]="addQuest.title" />
+                </div>
+            </div>
+        </form>
+    </div>
 </modal-dialog>

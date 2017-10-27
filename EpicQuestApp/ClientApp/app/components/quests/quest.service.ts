@@ -12,7 +12,7 @@ export class QuestService {
 
     //Returns a list of all Quests
     getQuests(): Promise<Quest[]> {
-        return this.coreService.sendAjaxRequest("Get", "api/quests", {})
+        return this.coreService.sendAjaxRequest("Get", "api/quests", "")
             .then(
                 response => response.json() as Quest[]
             )
@@ -28,7 +28,7 @@ export class QuestService {
             alert("NO ID");
         }
 
-        return this.coreService.sendAjaxRequest("Delete", "api/quests/" + id, {})
+        return this.coreService.sendAjaxRequest("Delete", "api/quests/" + id, "")
             .then(
                 response => response.json()
             )
@@ -37,6 +37,19 @@ export class QuestService {
             );
     }
 
+    //Add a new quest
+    addQuest(quest: Quest): Promise<any> {
+
+        return this.coreService.sendAjaxRequest("Post", "api/quests",quest)
+            .then(
+            response => response.json()
+            )
+            .catch(
+            this.handleError
+            );
+            
+        
+    }
 
     private handleError(error: any): Promise<any> {
         return Promise.reject(error);

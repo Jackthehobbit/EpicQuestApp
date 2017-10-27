@@ -18,7 +18,7 @@ namespace EpicQuestData
         /// Adds a Quest to the Database
         /// </summary>
         /// <param name="quest">Quest to Add</param>
-        public void AddQuest(Quest quest)
+        public void CreateQuest(Quest quest)
         {
 
             //Default the quest to active if not set

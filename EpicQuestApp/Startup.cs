@@ -10,7 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace EpicQuestApp
 {
@@ -44,6 +47,17 @@ namespace EpicQuestApp
             //Error Handling service used to standardise error messages 
             services.AddSingleton<MessageService>();
 
+            // Register the Swagger generator, defining one or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "EpicQuestApi", Version = "v1" });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "EpicQuestApp.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
+
             services.AddMvc(config =>
             {
                 if (_env.IsProduction())
@@ -56,6 +70,7 @@ namespace EpicQuestApp
                 config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             })
             .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +88,15 @@ namespace EpicQuestApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Epic Quest API V1");
+            });
 
             app.UseStaticFiles();
 
@@ -92,6 +116,7 @@ namespace EpicQuestApp
             {
                 config.CreateMap<QuestViewModel, Quest>().ReverseMap();
             });
+
         }
     }
 }
