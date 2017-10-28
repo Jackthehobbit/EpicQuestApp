@@ -112,7 +112,7 @@ export class QuestListComponent implements OnInit {
             )
             .catch(
             error => {
-                alert ("error")
+                alert("error");
             );
     }
 }

@@ -1,0 +1,7 @@
+﻿<div>
+    <form [formGroup]="form">
+        <div *ngFor="let formInput of formInputs" class="form-row">
+            <dynamic-form-input [formInput]="formInput" [form]="form"></dynamic-form-input>
+        </div>
+    </form>
+</div>

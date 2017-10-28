@@ -1,0 +1,6 @@
+﻿<div class="form-group">
+    <label [attr.for]="formInput.key" class="">{{formInput.label}}</label>
+    <div [ngSwitch]="formInput.controlType" class="col-sm-4">
+        <input *ngSwitchCase="'textbox'" [formControlName]="formInput.key" [id]="formInput.key" [type]="formInput.type" class="form-control"/>
+    </div>
+</div>
